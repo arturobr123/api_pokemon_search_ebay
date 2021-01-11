@@ -11,14 +11,25 @@ let getSingleItemUri = "https://open.api.ebay.com/shopping?callname=GetSingleIte
 "&appid=" + EBAY_APP_ID + 
 "&siteid=0" + 
 "&version=967" + 
-"&ItemID=353323119335";
+"&ItemID="; //353323119335
+
+const defaultItemId = "353323119335";
 
 /* GET ebay query. */
 //WORKS PERFECT !!!!!!!!
 router.get('/', function(req, res, next) {
+    //get params in url. ex. http://localhost:3000/getSpecificItem?test=2222
+    //console.log(req.query.test); //2222
+    //console.log(req.query.test); //2222
+
+    let itemID = req.query.itemID;
+
+    if (itemID === null || itemID === undefined || itemID === ""){
+        itemID = defaultItemId;
+    }
+
     try {
-      axios.get(getSingleItemUri).then(resp => {
-        console.log(resp.data);
+      axios.get(getSingleItemUri + itemID).then(resp => {
         res.send(resp.data);
           
       });
