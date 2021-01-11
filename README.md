@@ -7,4 +7,6 @@
 
 http://localhost:3000/getPokemon query the items from ebay
 
+http://localhost:3000/getSpecificItem query specific item from ebay
+
 
